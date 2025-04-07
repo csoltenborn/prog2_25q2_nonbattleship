@@ -52,6 +52,34 @@ public class Circle {
         return this.y;
     }
 
+    public void performAction(final CircleAction action) {
+        switch (action) {
+            case UP:
+                this.y -= 10;
+                break;
+            case DOWN:
+                this.y += 10;
+                break;
+            case LEFT:
+                this.x -= 10;
+                break;
+            case RIGHT:
+                this.x += 10;
+                break;
+            case BIGGER:
+                this.radius += 10;
+                break;
+            case SMALLER:
+                if (this.radius >= 10) {
+                    this.radius -= 10;
+                }
+                break;
+            default:
+                Utility.error("Unknown action " + action);
+                break;
+        }
+    }
+
     public void setRadius(final int radius) {
         if (radius < 0) {
             Utility.error("Trying to set radius to negative value " + radius + "!");
