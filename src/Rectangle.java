@@ -131,4 +131,27 @@ public class Rectangle {
         this.y = y;
     }
 
+    @Override
+    public String toString() {
+        String res = "";
+        for (int yp = 0; yp < this.y + this.height; yp++) {
+            for (int xp = 0; xp < this.x + this.width; xp++) {
+                if (this.contains(xp, yp)) {
+                    res += "#";
+                } else {
+                    res += "_";
+                }
+            }
+            res += "\n";
+        }
+        return res;
+    }
+
+    private boolean contains(final double x, final double y) {
+        return (this.x <= x) &&
+                (x <= this.x + this.width) &&
+                (this.y <= y) &&
+                (y <= this.y + this.height);
+    }
+
 }
