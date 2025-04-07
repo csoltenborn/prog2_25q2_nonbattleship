@@ -103,6 +103,34 @@ public class Rectangle {
         return this.x;
     }
 
+    public void performAction(final RectangleAction action) {
+        switch (action) {
+            case RAISE:
+                this.height += 10;
+                break;
+            case LOWER:
+                if (this.height >= 10) {
+                    this.height -= 10;
+                }
+                break;
+            case NARROW:
+                if (this.width >= 10) {
+                    this.width -= 10;
+                }
+                break;
+            case WIDEN:
+                this.width += 10;
+                break;
+            case ROTATE_RIGHT:
+            case ROTATE_LEFT:
+                // nothing to do
+                break;
+            default:
+                Utility.error("Unknown action " + action);
+                break;
+        }
+    }
+
     public int getY() {
         return this.y;
     }
