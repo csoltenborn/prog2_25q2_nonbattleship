@@ -23,4 +23,32 @@ public class Circle {
         return Circle.newCircle(this.x, this.y, this.radius);
     }
 
+    public int getRadius() {
+        return this.radius;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public void setRadius(final int radius) {
+        if (radius < 0) {
+            Utility.error("Trying to set radius to negative value " + radius + "!");
+        } else {
+            this.radius = radius;
+        }
+    }
+
+    public void setX(final int x) {
+        this.x = x;
+    }
+
+    public void setY(final int y) {
+        this.y = y;
+    }
+
 }
