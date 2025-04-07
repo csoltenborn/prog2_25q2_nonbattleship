@@ -12,6 +12,14 @@ public class Circle {
         return res;
     }
 
+    public static double size(final Circle... circles) {
+        double res = 0;
+        for (final Circle r : circles) {
+            res += r.singleSize();
+        }
+        return res;
+    }
+
     private int radius;
 
     private int x;
@@ -21,6 +29,15 @@ public class Circle {
     @Override
     public Circle clone() {
         return Circle.newCircle(this.x, this.y, this.radius);
+    }
+
+    public boolean contains(final Circle... others) {
+        for (final Circle o : others) {
+            if (!this.containsOne(o)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int getRadius() {
@@ -49,6 +66,15 @@ public class Circle {
 
     public void setY(final int y) {
         this.y = y;
+    }
+
+    private boolean containsOne(final Circle that) {
+        final double distance = Utility.distance(this.x, this.y, that.x, that.y);
+        return this.radius >= that.radius + distance;
+    }
+
+    private double singleSize() {
+        return this.radius * this.radius * Utility.PI;
     }
 
 }
