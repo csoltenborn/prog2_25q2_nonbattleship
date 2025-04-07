@@ -4,6 +4,61 @@ public class Rectangle {
         return Rectangle.newRectangle(toCopy.x, toCopy.y, toCopy.width, toCopy.height);
     }
 
+    public static Rectangle intersection(final Rectangle... rectangles) {
+        if (rectangles.length == 0) {
+            return null;
+        }
+        Rectangle res = rectangles[0];
+        for (int i = 1; i < rectangles.length; i++) {
+            res = Rectangle.singleIntersection(res, rectangles[i]);
+            if (res == null) {
+                return null;
+            }
+        }
+        return res;
+    }
+
+    public static Rectangle union(final Rectangle... rectangles) {
+        if (rectangles.length == 0) {
+            return null;
+        } else {
+            Rectangle res = rectangles[0];
+            for (int i = 1; i < rectangles.length; i++) {
+                res = Rectangle.singleUnion(res, rectangles[i]);
+            }
+            return res;
+        }
+    }
+
+    private static Rectangle singleIntersection(
+            final Rectangle aRect,
+            final Rectangle anotherRect
+    ) {
+        final int nx = Utility.max(aRect.x, anotherRect.x);
+        final int ny = Utility.max(aRect.y, anotherRect.y);
+        final int nw =
+                Utility.min(aRect.x + aRect.width, anotherRect.x + anotherRect.width) - nx;
+        final int nh =
+                Utility.min(aRect.y + aRect.height, anotherRect.y + anotherRect.height) - ny;
+        if (nw < 0 || nh < 0) {
+            return null;
+        }
+        return Rectangle.newRectangle(nx, ny, nw, nh);
+    }
+
+    private static Rectangle singleUnion(
+            final Rectangle aRect,
+            final Rectangle anotherRect
+    ) {
+        final int nx = Utility.min(aRect.x, anotherRect.x);
+        final int ny = Utility.min(aRect.y, anotherRect.y);
+        final int nw =
+                Utility.max(aRect.x + aRect.width, anotherRect.x + anotherRect.width) - nx;
+        final int nh =
+                Utility.max(aRect.y + aRect.height, anotherRect.y + anotherRect.height) - ny;
+        return Rectangle.newRectangle(nx, ny, nw, nh);
+    }
+
     public static Rectangle newRectangle(
             final int x,
             final int y,
