@@ -68,6 +68,11 @@ public class Circle {
         this.y = y;
     }
 
+    @Override
+    public String toString() {
+        return "(" + this.x + "|" + this.y + ")," + this.radius;
+    }
+
     private boolean containsOne(final Circle that) {
         final double distance = Utility.distance(this.x, this.y, that.x, that.y);
         return this.radius >= that.radius + distance;
