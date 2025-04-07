@@ -36,4 +36,44 @@ public class Rectangle {
 
     private int y;
 
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public void setHeight(final int height) {
+        if (height < 0) {
+            Utility.error("Trying to set height to negative value " + height + "!");
+        } else {
+            this.height = height;
+        }
+    }
+
+    public void setWidth(final int width) {
+        if (width < 0) {
+            Utility.error("Trying to set width to negative value " + width + "!");
+        } else {
+            this.width = width;
+        }
+    }
+
+    public void setX(final int x) {
+        this.x = x;
+    }
+
+    public void setY(final int y) {
+        this.y = y;
+    }
+
 }
